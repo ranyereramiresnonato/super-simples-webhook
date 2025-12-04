@@ -1,6 +1,6 @@
-﻿using receiver_and_producer.Dtos;
+﻿using api.Dtos;
 
-namespace receiver_and_producer.Queue.AzureServiceBusSender
+namespace api.Queue.AzureServiceBusSender
 {
     public interface IAzureServiceBusSender
     {

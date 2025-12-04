@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using receiver_and_producer.Dtos;
-using receiver_and_producer.Services.GenericDispatcherService;
+using api.Dtos;
+using api.Services.GenericDispatcherService;
 using System.Net;
+using api.Consts;
 
-namespace receiver_and_producer.Controllers
+namespace api.Controllers
 {
     /// <summary>
-    /// Controller responsável por receber mensagens via webhook do banco OneBlink e despachá-las para a fila de processamento.
+    /// Controller responsável por receber mensagens via webhook do banco ParanaBank e despachá-las para a fila de processamento.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class OneBlinkController : ControllerBase
+    public class ParanaBankController : ControllerBase
     {
         private readonly IGenericDispatcherService _genericDispatcherService;
-        public OneBlinkController(IGenericDispatcherService IGenericDispatcherService)
+        public ParanaBankController(IGenericDispatcherService IGenericDispatcherService)
         {
             _genericDispatcherService = IGenericDispatcherService;
         }
@@ -38,7 +39,7 @@ namespace receiver_and_producer.Controllers
                 return BadRequest(badRequestResponse);
             }
 
-            await _genericDispatcherService.DispatchAsync("oneblink", message);
+            await _genericDispatcherService.DispatchAsync(ProviderIdentifiers.ParanaBank, message);
 
             var okResponse = new GenericResponseApiDTO((int)HttpStatusCode.OK, "Webhook recebido com sucesso");
             return Ok(okResponse);

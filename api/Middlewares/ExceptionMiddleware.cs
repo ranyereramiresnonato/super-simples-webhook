@@ -1,8 +1,8 @@
-﻿using receiver_and_producer.Dtos;
+﻿using api.Dtos;
 using System.Net;
 using System.Text.Json;
 
-namespace receiver_and_producer.Middlewares
+namespace api.Middlewares
 {
     public class ExceptionMiddleware
     {

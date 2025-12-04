@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using receiver_and_producer.Dtos;
-using receiver_and_producer.Services.GenericDispatcherService;
+using api.Dtos;
+using api.Services.GenericDispatcherService;
 using System.Net;
+using api.Consts;
 
-namespace receiver_and_producer.Controllers
+namespace api.Controllers
 {
     /// <summary>
     /// Controller responsável por receber webhooks do BMP e despachar para a fila de processamento.
@@ -45,7 +46,7 @@ namespace receiver_and_producer.Controllers
                 Identificador = identificador
             };
 
-            await _genericDispatcherService.DispatchAsync("bmp", message);
+            await _genericDispatcherService.DispatchAsync(ProviderIdentifiers.Bmp, message);
 
             return Ok(new GenericResponseApiDTO((int)HttpStatusCode.OK, "Webhook recebido com sucesso"));
         }

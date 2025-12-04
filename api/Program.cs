@@ -1,6 +1,6 @@
 using Azure.Messaging.ServiceBus;
-using receiver_and_producer.Queue.AzureServiceBusSender;
-using receiver_and_producer.Services.GenericDispatcherService;
+using api.Queue.AzureServiceBusSender;
+using api.Services.GenericDispatcherService;
 
 var builder = WebApplication.CreateBuilder(args);
 

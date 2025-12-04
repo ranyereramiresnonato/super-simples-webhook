@@ -1,4 +1,4 @@
-﻿namespace receiver_and_producer.Services.GenericDispatcherService
+﻿namespace api.Services.GenericDispatcherService
 {
     public interface IGenericDispatcherService
     {

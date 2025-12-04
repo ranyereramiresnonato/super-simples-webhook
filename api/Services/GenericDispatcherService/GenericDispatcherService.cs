@@ -1,7 +1,7 @@
-﻿using receiver_and_producer.Dtos;
-using receiver_and_producer.Queue.AzureServiceBusSender;
+﻿using api.Dtos;
+using api.Queue.AzureServiceBusSender;
 
-namespace receiver_and_producer.Services.GenericDispatcherService
+namespace api.Services.GenericDispatcherService
 {
     public class GenericDispatcherService : IGenericDispatcherService
     {

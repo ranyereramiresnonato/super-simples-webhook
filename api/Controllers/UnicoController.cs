@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using receiver_and_producer.Dtos;
-using receiver_and_producer.Services.GenericDispatcherService;
+using api.Dtos;
+using api.Services.GenericDispatcherService;
 using System.Net;
+using api.Consts;
 
-namespace receiver_and_producer.Controllers
+namespace api.Controllers
 {
     /// <summary>
     /// Controller responsável por receber webhooks do banco Unico e despachar para filas de processamento específicas.
@@ -37,7 +37,7 @@ namespace receiver_and_producer.Controllers
             if (message == null)
                 return BadRequest(new GenericResponseApiDTO((int)HttpStatusCode.BadRequest, "O corpo da requisição não pode ser nulo."));
 
-            await _genericDispatcherService.DispatchAsync("unico-check", message);
+            await _genericDispatcherService.DispatchAsync(ProviderIdentifiers.UnicoCheck, message);
             return Ok(new GenericResponseApiDTO((int)HttpStatusCode.OK, "Webhook Check recebido com sucesso"));
         }
 
@@ -59,7 +59,7 @@ namespace receiver_and_producer.Controllers
             if (string.IsNullOrEmpty(apiKey) || apiKey != _validApiKey)
                 return Unauthorized(new GenericResponseApiDTO((int)HttpStatusCode.Unauthorized, "Chave de API inválida."));
 
-            await _genericDispatcherService.DispatchAsync("unico-id", message);
+            await _genericDispatcherService.DispatchAsync(ProviderIdentifiers.UnicoId, message);
             return Ok(new GenericResponseApiDTO((int)HttpStatusCode.OK, "Webhook Id recebido com sucesso"));
         }
     }

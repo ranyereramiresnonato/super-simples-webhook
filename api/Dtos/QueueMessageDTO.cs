@@ -1,4 +1,4 @@
-﻿namespace receiver_and_producer.Dtos
+﻿namespace api.Dtos
 {
     public sealed record QueueMessageDTO(string DestinationIdentifier, object Payload);
 }

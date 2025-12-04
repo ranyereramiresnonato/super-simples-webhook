@@ -1,8 +1,8 @@
 ﻿using Azure.Messaging.ServiceBus;
-using receiver_and_producer.Dtos;
+using api.Dtos;
 using System.Text.Json;
 
-namespace receiver_and_producer.Queue.AzureServiceBusSender
+namespace api.Queue.AzureServiceBusSender
 {
     public class AzureServiceBusSender : IAzureServiceBusSender
     {

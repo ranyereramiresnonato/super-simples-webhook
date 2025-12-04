@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using receiver_and_producer.Dtos;
-using receiver_and_producer.Services.GenericDispatcherService;
+using api.Dtos;
+using api.Services.GenericDispatcherService;
 using System.Net;
+using api.Consts;
 
-namespace receiver_and_producer.Controllers
+namespace api.Controllers
 {
     /// <summary>
     /// Controller responsável por receber webhooks do banco Qi e despachar para filas de processamento específicas.
@@ -36,7 +37,7 @@ namespace receiver_and_producer.Controllers
             if (message == null)
                 return BadRequest(new GenericResponseApiDTO((int)HttpStatusCode.BadRequest, "O corpo da requisição não pode ser nulo."));
 
-            await _genericDispatcherService.DispatchAsync("qi-fgts", message);
+            await _genericDispatcherService.DispatchAsync(ProviderIdentifiers.QiFgts, message);
             return Ok(new GenericResponseApiDTO((int)HttpStatusCode.OK, "Webhook FGTS recebido com sucesso"));
         }
 
@@ -57,7 +58,7 @@ namespace receiver_and_producer.Controllers
             if (message == null)
                 return BadRequest(new GenericResponseApiDTO((int)HttpStatusCode.BadRequest, "O corpo da requisição não pode ser nulo."));
 
-            await _genericDispatcherService.DispatchAsync("qi-inss", message);
+            await _genericDispatcherService.DispatchAsync(ProviderIdentifiers.QiInss, message);
             return Ok(new GenericResponseApiDTO((int)HttpStatusCode.OK, "Webhook INSS recebido com sucesso"));
         }
 
@@ -78,7 +79,7 @@ namespace receiver_and_producer.Controllers
             if (message == null)
                 return BadRequest(new GenericResponseApiDTO((int)HttpStatusCode.BadRequest, "O corpo da requisição não pode ser nulo."));
 
-            await _genericDispatcherService.DispatchAsync("qi-installments", message);
+            await _genericDispatcherService.DispatchAsync(ProviderIdentifiers.QiInstallments, message);
             return Ok(new GenericResponseApiDTO((int)HttpStatusCode.OK, "Webhook Installments recebido com sucesso"));
         }
     }
